@@ -5,7 +5,7 @@
 // An iterator yields a sequence of key/value pairs from a source.
 // The following class defines the interface.  Multiple implementations
 // are provided by this library.  In particular, iterators are provided
-// to access the contents of a Table or a DB.
+// to access the contents of a Table or a DB. TODO: 注意
 //
 // Multiple threads can invoke const methods on an Iterator without
 // external synchronization, but if any of the threads may call a
