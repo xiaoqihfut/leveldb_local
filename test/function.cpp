@@ -43,12 +43,13 @@ int main()
     // std::cout << "c Value: " << c << std::endl;
 
 
-    int x = 1; int y = 2;
-    auto plus = [=] (int a, int b) -> int { return x + y + a + b; };
-    int c = plus(1, 2);
-    std::cout << c << "\n";
     // int x = 1; int y = 2;
-    // auto plus = [=] (int a, int b) mutable -> int { x++; return x + y + a + b; };
+    // auto plus = [=] (int a, int b) -> int { return x + y + a + b; };
     // int c = plus(1, 2);
+    // std::cout << c << "\n";
+    int x = 1; int y = 2;
+    auto plus = [=] (int a, int b) mutable -> int { x++; return x + y + a + b; };
+    int c = plus(1, 2);
+    std::cout << c << " " << x <<"\n";
     return EXIT_SUCCESS;
 }
