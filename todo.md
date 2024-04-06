@@ -9,3 +9,10 @@
 9、std::for_each
 10、复习shared_ptr和weak_ptr
 11、std::move
+
+
+12、（x）表示x的引用
+a) 如果 表达式 的值类别是亡值，则 decltype 产生 T&&；
+b) 如果 表达式 的值类别是左值，则 decltype 产生 T&；
+c) 如果 表达式 的值类别是纯右值，则 decltype 产生 T。
+<!-- https://zh.cppreference.com/w/cpp/language/decltype -->
