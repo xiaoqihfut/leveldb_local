@@ -1,6 +1,7 @@
 // function
 #include <functional>
-
+#include <iostream>
+#include <memory>
 // 【伪代码】std::function<returnType(argType, argType，...)> func;
 
 // 【常规情况】std::function<int(int, int)> func;
