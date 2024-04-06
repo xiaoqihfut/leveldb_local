@@ -33,14 +33,22 @@ public:
 
 int main()
 {
-    int a = 4;
-    int b = 6;
+    // int a = 4;
+    // int b = 6;
 
-    std::shared_ptr<BrainToolBox> brain = std::make_shared<BrainToolBox>();
-    std::function<int(int, int)> addFunc = std::bind(&BrainToolBox::Add, brain, std::placeholders::_1, std::placeholders::_2);
+    // std::shared_ptr<BrainToolBox> brain = std::make_shared<BrainToolBox>();
+    // std::function<int(int, int)> addFunc = std::bind(&BrainToolBox::Add, brain, std::placeholders::_1, std::placeholders::_2);
     
-    int c = addFunc(a, b);
-    std::cout << "c Value: " << c << std::endl;
+    // int c = addFunc(a, b);
+    // std::cout << "c Value: " << c << std::endl;
 
+
+    int x = 1; int y = 2;
+    auto plus = [=] (int a, int b) -> int { return x + y + a + b; };
+    int c = plus(1, 2);
+    std::cout << c << "\n";
+    // int x = 1; int y = 2;
+    // auto plus = [=] (int a, int b) mutable -> int { x++; return x + y + a + b; };
+    // int c = plus(1, 2);
     return EXIT_SUCCESS;
 }
