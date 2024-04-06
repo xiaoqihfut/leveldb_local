@@ -42,7 +42,19 @@ int main()
     // int c = addFunc(a, b);
     // std::cout << "c Value: " << c << std::endl;
 
+/*-----------------------------lambda ------------------------------------*/
+/* 捕获列表，对应LambdaClass类的private成员。
 
+参数列表，对应LambdaClass类的成员函数的operator()的形参列表
+
+mutable，对应 LambdaClass类成员函数 operator() 的const属性 ，但是只有在捕获列表捕获的参数不含有引用捕获的情况下才会生效，因为捕获列表只要包含引用捕获，那operator()函数就一定是非const函数。
+
+返回类型，对应 LambdaClass类成员函数 operator() 的返回类型
+
+函数体，对应 LambdaClass类成员函数 operator() 的函数体。
+
+引用捕获和值捕获不同的一点就是，对应的成员是否为引用类型。 
+*/
     // int x = 1; int y = 2;
     // auto plus = [=] (int a, int b) -> int { return x + y + a + b; };
     // int c = plus(1, 2);
@@ -57,6 +69,7 @@ int main()
     // auto plus = [=] (int a, int b) mutable -> int { x++; return x + y + a + b; };
     // int c = plus(1, 2);
     // std::cout << c << " " << x <<"\n"; // 7 1
+
 
     int x = 1; int y = 2;
     auto plus = [&] (int a, int b) -> int { x++; return x + y + a + b;};

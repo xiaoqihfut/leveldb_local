@@ -7,3 +7,5 @@
 7、匿名命名空间的作用: 主要是对于当前文件可见，其他文件不可见
 8、operator() 可调用对象等
 9、std::for_each
+10、复习shared_ptr和weak_ptr
+11、std::move
