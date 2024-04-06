@@ -4,4 +4,4 @@
 4、std::forward std::function std::bind
 5、各种xx_cast 转换函数
 6、constexpr
-7、匿名命名空间的作用
+7、匿名命名空间的作用: 主要是对于当前文件可见，其他文件不可见
