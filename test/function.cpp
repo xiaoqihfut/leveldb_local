@@ -13,7 +13,7 @@
 //     return a + b;
 // }
 
-// /* --- 普通函数 --- */
+// /* --- 普通函数 --- */ 
 // 【伪代码】std::bind(&funcName, std::placeholders::_1, ...);
 
 // 【常规情况】std::bind(&Add, std::placeholders::_1, std::placeholders::_2);
