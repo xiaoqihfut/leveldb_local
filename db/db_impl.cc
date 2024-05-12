@@ -179,7 +179,7 @@ DBImpl::~DBImpl() {
 }
 
 Status DBImpl::NewDB() {
-  VersionEdit new_db;
+  VersionEdit new_db;// 临时变量，不会参与版本的产生，只会在VersionSet::Recover 里面用到
   new_db.SetComparatorName(user_comparator()->Name());
   new_db.SetLogNumber(0);
   new_db.SetNextFile(2);
@@ -295,9 +295,9 @@ Status DBImpl::Recover(VersionEdit* edit, bool* save_manifest) {
   // Ignore error from CreateDir since the creation of the DB is
   // committed only when the descriptor is created, and this directory
   // may already exist from a previous failed creation attempt.
-  env_->CreateDir(dbname_);
+  env_->CreateDir(dbname_);// 创建DB文件夹
   assert(db_lock_ == nullptr);
-  Status s = env_->LockFile(LockFileName(dbname_), &db_lock_);
+  Status s = env_->LockFile(LockFileName(dbname_), &db_lock_);// 文件锁，防止多进程操作数据库
   if (!s.ok()) {
     return s;
   }

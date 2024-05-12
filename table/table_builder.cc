@@ -101,7 +101,7 @@ void TableBuilder::Add(const Slice& key, const Slice& value) {
 
   if (r->pending_index_entry) {
     assert(r->data_block.empty());
-    r->options.comparator->FindShortestSeparator(&r->last_key, key);
+    r->options.comparator->FindShortestSeparator(&r->last_key, key);// 找到公共的分割点 dbformat.cc:FindShortestSeparator
     std::string handle_encoding;
     r->pending_handle.EncodeTo(&handle_encoding);
     r->index_block.Add(r->last_key, Slice(handle_encoding));
@@ -112,7 +112,7 @@ void TableBuilder::Add(const Slice& key, const Slice& value) {
     r->filter_block->AddKey(key);
   }
 
-  r->last_key.assign(key.data(), key.size());
+  r->last_key.assign(key.data(), key.size());// 这里是 internalkey
   r->num_entries++;
   r->data_block.Add(key, value);
 
@@ -145,7 +145,7 @@ void TableBuilder::WriteBlock(BlockBuilder* block, BlockHandle* handle) {
   //    crc: uint32
   assert(ok());
   Rep* r = rep_;
-  Slice raw = block->Finish();
+  Slice raw = block->Finish();// 主要是把restart_保存
 
   Slice block_contents;
   CompressionType type = r->options.compression;
@@ -192,7 +192,7 @@ void TableBuilder::WriteBlock(BlockBuilder* block, BlockHandle* handle) {
 void TableBuilder::WriteRawBlock(const Slice& block_contents,
                                  CompressionType type, BlockHandle* handle) {
   Rep* r = rep_;
-  handle->set_offset(r->offset);
+  handle->set_offset(r->offset); // 每一个block最后加入压缩类型和crc校验码
   handle->set_size(block_contents.size());
   r->status = r->file->Append(block_contents);
   if (r->status.ok()) {

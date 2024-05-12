@@ -82,7 +82,7 @@ void BlockBuilder::Add(const Slice& key, const Slice& value) {
       shared++;
     }
   } else {
-    // Restart compression
+    // Restart compression  就是计算偏移
     restarts_.push_back(buffer_.size());
     counter_ = 0;
   }
@@ -97,7 +97,7 @@ void BlockBuilder::Add(const Slice& key, const Slice& value) {
   buffer_.append(key.data() + shared, non_shared);
   buffer_.append(value.data(), value.size());
 
-  // Update state
+  // Update state TODO: 注意这里的last_key_赋值操作
   last_key_.resize(shared);
   last_key_.append(key.data() + shared, non_shared);
   assert(Slice(last_key_) == key);

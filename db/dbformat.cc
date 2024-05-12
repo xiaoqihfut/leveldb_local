@@ -74,7 +74,10 @@ void InternalKeyComparator::FindShortestSeparator(std::string* start,
     // User key has become shorter physically, but larger logically.
     // Tack on the earliest possible number to the shortened user key.
     PutFixed64(&tmp,
-               PackSequenceAndType(kMaxSequenceNumber, kValueTypeForSeek));
+               PackSequenceAndType(kMaxSequenceNumber, kValueTypeForSeek));//主要是为了构造一个internalkey， 
+                                                                           // 类似于这样key123 和key125 比较之后，得到key124 + 后缀（参见memetable）
+                                                                           // key bytes    : char[internal_key.size()]
+                                                                           // tag          : uint64((sequence << 8) | type)
     assert(this->Compare(*start, tmp) < 0);
     assert(this->Compare(tmp, limit) < 0);
     start->swap(tmp);
